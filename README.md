@@ -49,14 +49,6 @@ The objective of this assignment is to design and implement a scalable frontend 
 4. **Logout Functionality**
     - Implement a logout feature to allow users to sign out when needed.
 
-## Instructions
-1. Clone this repository to your local machine.
-2. Open the project in your preferred Flutter development environment (e.g., VSCode, Android Studio).
-3. Implement the tasks outlined above, following best practices for Flutter and Firebase development.
-4. Test the app thoroughly to ensure a smooth and bug-free user experience.
-5. Provide documentation on the structure of your code, especially focusing on key design decisions and patterns.
-6. Submit your completed project along with documentation for evaluation.
-
 ## Technologies Used
 - Flutter
 - Firebase (Authentication, Cloud Firestore)
