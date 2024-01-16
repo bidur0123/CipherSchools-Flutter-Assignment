@@ -105,6 +105,5 @@ class Verify extends StatelessWidget {
       ),
     );
   }
-
   resend() {}
 }

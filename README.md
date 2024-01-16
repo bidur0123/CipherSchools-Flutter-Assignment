@@ -57,5 +57,8 @@ The objective of this assignment is to design and implement a scalable frontend 
 ## Author
 Bidur Gupta
 
+## Download the App
+[![Download APK](https://img.shields.io/badge/Download-APK-brightgreen)]https://drive.google.com/file/d/1LThuwEtj8pNL-CSDdWKWNQLOyOJqfbfL/view?usp=sharing
+
 ## License
 This project is licensed under the [MIT License](LICENSE).

@@ -13,6 +13,7 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
+  final AuthController _authController = AuthController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController nameController = TextEditingController();
@@ -93,8 +94,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
               controller: emailController,
               decoration: InputDecoration(
                 labelText: "Email",
-                // labelStyle:
-                //     TextStyle(fontFamily: GoogleFonts.poppins().fontFamily),
                 focusedBorder: OutlineInputBorder(
                   borderSide:
                       const BorderSide(color: Colors.indigo, width: 2.0),
@@ -117,9 +116,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
               controller: passwordController,
               decoration: InputDecoration(
                 labelText: "Password",
-                // labelStyle: TextStyle(
-                //     fontFamily: GoogleFonts.poppins().fontFamily
-                // ),
                 focusedBorder: OutlineInputBorder(
                   borderSide:
                       const BorderSide(color: Colors.indigo, width: 2.0),
@@ -135,50 +131,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ),
               ),
             ),
-            const SizedBox(
-              height: 10,
-            ),
-            Row(children: <Widget>[
-              Expanded(
-                  child: Divider(
-                color: Colors.grey[400],
-              )),
-              const Text(
-                "or",
-                style: TextStyle(color: Colors.grey),
-              ),
-              Expanded(
-                  child: Divider(
-                color: Colors.grey[400],
-              )),
-            ]),
-            const SizedBox(
-              height: 25,
-            ),
-            ElevatedButton(
-                onPressed: () {},
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(Colors.white),
-                ),
-                child: Container(
-                  height: 40,
-                  width: 210,
-                  child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Image.asset(
-                          'images/google.png',
-                          width: 18,
-                        ),
-                        const SizedBox(
-                          width: 5,
-                        ),
-                        const Text(
-                          "Continue with Google",
-                          style: TextStyle(color: Colors.black),
-                        ),
-                      ]),
-                )),
             const SizedBox(
               height: 60,
             ),
@@ -227,9 +179,56 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     style: TextStyle(
                         color: Colors.indigo, fontWeight: FontWeight.bold),
                   ),
-                )
+                ),
+
               ],
-            )
+            ),
+            SizedBox(
+              height: 25,
+            ),
+            Row(children: <Widget>[
+              Expanded(
+                  child: Divider(
+                    color: Colors.grey[400],
+                  )),
+              Text(
+                "or",
+                style: TextStyle(color: Colors.grey),
+              ),
+              Expanded(
+                  child: Divider(
+                    color: Colors.grey[400],
+                  )),
+            ]),
+            SizedBox(
+              height: 15,
+            ),
+            ElevatedButton(
+                onPressed: ()  async {
+                  await signInWithGoogle();
+                },
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(Colors.white),
+                ),
+                child: Container(
+                  height: 40,
+                  width: 210,
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          'images/google.png',
+                          width: 18,
+                        ),
+                        SizedBox(
+                          width: 5,
+                        ),
+                        Text(
+                          "Continue with Google",
+                          style: TextStyle(color: Colors.black),
+                        ),
+                      ]),
+                )),
           ]),
         ),
       ),
@@ -265,5 +264,23 @@ class _SignUpScreenState extends State<SignUpScreen> {
     setState(() {
       value = check!;
     });
+  }
+  signInWithGoogle() async {
+    setState(() {
+      _isLoading = true;
+    });
+    String res = await _authController.signinWithGoogle();
+    if (res != 'success') {
+      setState(() {
+        _isLoading = false;
+      });
+      if (!mounted) return;
+      return showSnackBarr(res, context);
+    } else {
+      if (!mounted) return;
+      showSnackBarr(
+          'Congratulations you have been successfully signed in..', context);
+      return Navigator.of(context).pushReplacementNamed('/bottom');
+    }
   }
 }

@@ -9,7 +9,7 @@ class Profile extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(height: 50),
+            SizedBox(height: 100),
             Padding(
               padding: const EdgeInsets.only(left: 25),
               child: Row(
@@ -83,7 +83,7 @@ class Profile extends StatelessWidget {
             Container(
               margin: EdgeInsets.only(top: 50, left: 10, right: 10),
               width: 336,
-              height: 350,
+              height: 400,
               decoration: ShapeDecoration(
                 color: Color(0xffFFFFFF),
                 shape: RoundedRectangleBorder(
@@ -111,7 +111,7 @@ class Profile extends StatelessWidget {
                       icon: "images/upload.svg",
                       press: () {}),
                   ProfileMenu(
-                      text: "Log Out", icon: "images/logout.svg", press: () {}),
+                      text: "LogOut ", icon: "images/logout.svg", press: () {}),
                 ],
               ),
             ),

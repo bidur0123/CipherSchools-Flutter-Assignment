@@ -27,14 +27,13 @@ class _LoginScreenState extends State<LoginScreen> {
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.all(25),
-          child: Column(
-              children: [
-                SizedBox(
-                  height: 90,
-                ),
+          child: Column(children: [
+            SizedBox(
+              height: 120,
+            ),
             Center(
               child: Text(
-                "Welcome Back!",
+                "Login ",
                 style: TextStyle(
                   fontSize: 25,
                   color: Colors.black,
@@ -71,9 +70,6 @@ class _LoginScreenState extends State<LoginScreen> {
               controller: passwordController,
               decoration: InputDecoration(
                 labelText: "Password",
-                // labelStyle: TextStyle(
-                //     fontFamily: GoogleFonts.poppins().fontFamily
-                // ),
                 focusedBorder: OutlineInputBorder(
                   borderSide:
                       const BorderSide(color: Colors.indigo, width: 2.0),
@@ -110,13 +106,14 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ],
                 ),
-                SizedBox(width: 10,),
+                SizedBox(
+                  width: 10,
+                ),
                 GestureDetector(
                   onTap: () => Navigator.pushReplacement(context,
                       MaterialPageRoute(builder: (context) => PasswordReset())),
                   child: Container(
                       alignment: Alignment.topRight,
-                     // margin: EdgeInsets.only(left: 120),
                       child: Text(
                         "Forgot Password ?",
                         style: TextStyle(
@@ -126,51 +123,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ],
             ),
-            Row(children: <Widget>[
-              Expanded(
-                  child: Divider(
-                color: Colors.grey[400],
-              )),
-              Text(
-                "or",
-                style: TextStyle(color: Colors.grey),
-              ),
-              Expanded(
-                  child: Divider(
-                color: Colors.grey[400],
-              )),
-            ]),
             SizedBox(
               height: 25,
-            ),
-            ElevatedButton(
-                onPressed: () async {
-                  await signInWithGoogle();
-                },
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(Colors.white),
-                ),
-                child: Container(
-                  height: 40,
-                  width: 210,
-                  child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Image.asset(
-                          'images/google.png',
-                          width: 18,
-                        ),
-                        SizedBox(
-                          width: 5,
-                        ),
-                        Text(
-                          "Continue with Google",
-                          style: TextStyle(color: Colors.black),
-                        ),
-                      ]),
-                )),
-            SizedBox(
-              height: 65,
             ),
             GestureDetector(
               onTap: () async => await loginUsers(),
@@ -219,7 +173,53 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 )
               ],
-            )
+            ),
+            SizedBox(
+              height: 25,
+            ),
+            Row(children: <Widget>[
+              Expanded(
+                  child: Divider(
+                color: Colors.grey[400],
+              )),
+              Text(
+                "or",
+                style: TextStyle(color: Colors.grey),
+              ),
+              Expanded(
+                  child: Divider(
+                color: Colors.grey[400],
+              )),
+            ]),
+            SizedBox(
+              height: 15,
+            ),
+            ElevatedButton(
+                onPressed: () async {
+                  await signInWithGoogle();
+                },
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(Colors.white),
+                ),
+                child: Container(
+                  height: 40,
+                  width: 210,
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          'images/google.png',
+                          width: 18,
+                        ),
+                        SizedBox(
+                          width: 5,
+                        ),
+                        Text(
+                          "Continue with Google",
+                          style: TextStyle(color: Colors.black),
+                        ),
+                      ]),
+                )),
           ]),
         ),
       ),
@@ -235,7 +235,6 @@ class _LoginScreenState extends State<LoginScreen> {
       if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
         setState(() {
           activeConnection = true;
-          // T = "Turn off the data and repress again";
         });
       }
     } on SocketException catch (_) {
@@ -262,7 +261,7 @@ class _LoginScreenState extends State<LoginScreen> {
       if (!mounted) return;
       showSnackBarr(
           'Congratulations you have been successfully signed in..', context);
-      return Navigator.of(context).pushReplacementNamed('/home');
+      return Navigator.of(context).pushReplacementNamed('/bottom');
     }
   }
 
@@ -287,7 +286,7 @@ class _LoginScreenState extends State<LoginScreen> {
       if (!mounted) return;
       showSnackBarr(
           'Congratulations you have been successfully signed in..', context);
-      return Navigator.of(context).pushReplacementNamed('/home');
+      return Navigator.of(context).pushReplacementNamed('/bottom');
     }
   }
 }

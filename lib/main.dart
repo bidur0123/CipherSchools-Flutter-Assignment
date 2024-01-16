@@ -8,6 +8,7 @@ import 'package:managment/Screens/auth/signup_screen.dart';
 import 'package:managment/firebase_options.dart';
 import 'package:managment/utils/const.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:managment/widgets/bottomnavigationbar.dart';
 import 'data/model/add_date.dart';
 
 void main() async {
@@ -52,11 +53,11 @@ class MyHomeApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       debugShowCheckedModeBanner: false,
-      home: Home(),
+      home: Bottom(),
       routes: {
         '/login': (context) => const LoginScreen(),
         '/signup': (context) => const SignUpScreen(),
-        '/home': (context) => const Home(),
+        '/Bottom': (context) => const Bottom(),
       },
     );
   }

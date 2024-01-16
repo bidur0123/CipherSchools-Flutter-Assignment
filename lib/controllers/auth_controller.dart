@@ -47,7 +47,6 @@ class AuthController {
       }
       res = 'success';
     } on FirebaseAuthException catch (e) {
-      // print(e);
     } catch (e) {
       res = e.toString();
     }
@@ -64,12 +63,8 @@ class AuthController {
         password: pass,
       );
       String downloadUrl;
-      // if (image != null) {
-      // downloadUrl = await _uploadImageToStorage(image);
-      // } else {
       downloadUrl = '';
-      // }
-      // User? user = userCredential.user;
+
       await userCredential.user!.sendEmailVerification();
       if (userCredential.additionalUserInfo!.isNewUser) {
         //store user details in firestore
@@ -93,7 +88,6 @@ class AuthController {
     } catch (e) {
       res = e.toString();
     }
-    // print(res);
     return res;
   }
 
@@ -108,7 +102,6 @@ class AuthController {
         res = 'Fields must not be empty';
       }
 
-      // print("Signed in");
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         res = 'No user found for this email.';
@@ -120,17 +113,14 @@ class AuthController {
     }
     return res;
   }
-  // git client secret 0a443c074eb2a80e4e060483b4695feeaabc533d
 
   authSignOut() async {
     try {
       await FirebaseAuth.instance.signOut();
       print("Signed Out");
     } on FirebaseAuthException catch (e) {
-      // if (e.code == 'user-not-found') {
       print(e.code);
-      // } else if (e.code == 'wrong-password') {
-      // print('Wrong password provided for that user.');
+
     }
   }
 }
